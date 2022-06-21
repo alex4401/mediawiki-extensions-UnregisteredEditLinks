@@ -4,8 +4,15 @@ namespace Ark\AnonEditFlow;
 use SkinTemplate;
 use SpecialPage;
 use MediaWiki\MediaWikiServices;
+use LoginHelper;
 
 class AnonEditFlowHooks {
+    const MSG_CREATE_ACCOUNT_TO_EDIT = 'ark-edit-accountrequired';
+
+    public static function onLoginFormValidErrorMessages( &$messages ) {
+        $messages[] = self::MSG_CREATE_ACCOUNT_TO_EDIT;
+    }
+
     public static function onSkinTemplateNavigation( SkinTemplate $skin, array &$links ) {
         global $wgNamespaceProtection;
         // Check if 'views' navigation is defined, and 'viewsource' is defined within; otherwise do not run
@@ -31,6 +38,7 @@ class AnonEditFlowHooks {
                         'class' => false,
                         'text' => wfMessage( 'edit' )->setContext( $skin->getContext() )->text(),
                         'href' => SpecialPage::getTitleFor( 'CreateAccount' )->getLocalURL( [
+                            'warning' => self::MSG_CREATE_ACCOUNT_TO_EDIT,
                             'returnto' => $title->getPrefixedDBKey(),
                             'returntoquery' => 'action=edit'
                         ] ),

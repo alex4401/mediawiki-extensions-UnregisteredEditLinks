@@ -16,12 +16,19 @@
 		}
 	},
 
+	"MessagesDirs": {
+		"AnonEditFlow.class": [
+			"i18n"
+		]
+	},
+
 	"AutoloadNamespaces": {
 		"Ark\\AnonEditFlow\\": "includes/"
 	},
 	
 	"Hooks": {
-		"SkinTemplateNavigation": "Ark\\AnonEditFlow\\AnonEditFlowHooks::onSkinTemplateNavigation"
+		"SkinTemplateNavigation::Universal": "Ark\\AnonEditFlow\\AnonEditFlowHooks::onSkinTemplateNavigation",
+		"LoginFormValidErrorMessages": "Ark\\AnonEditFlow\\AnonEditFlowHooks::onLoginFormValidErrorMessages"
 	},
 
 	"manifest_version": 2
