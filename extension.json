@@ -1,0 +1,28 @@
+{
+	"name": "ARK Wiki anonymous editing flow",
+	"version": "1.0.0",
+
+	"author": [
+		"alex4401"
+	],
+	"url": "https://gitlab.mglolenstine.xyz/alex4401/mediawiki-extension-anoneditflow",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+
+	"requires": {
+		"MediaWiki": ">= 1.37.0",
+		"platform": {
+			"php": ">= 7.4"
+		}
+	},
+
+	"AutoloadNamespaces": {
+		"Ark\\AnonEditFlow\\": "includes/"
+	},
+	
+	"Hooks": {
+		"SkinTemplateNavigation": "Ark\\AnonEditFlow\\AnonEditFlowHooks::onSkinTemplateNavigation"
+	},
+
+	"manifest_version": 2
+}
