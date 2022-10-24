@@ -15,7 +15,7 @@ class AnonEditFlowHooks implements
         $messages[] = self::MSG_CREATE_ACCOUNT_TO_EDIT;
     }
 
-    public function onSkinTemplateNavigation__Universal( SkinTemplate $skin, array &$links ): void {
+    public function onSkinTemplateNavigation__Universal( $skin, &$links ): void {
         global $wgNamespaceProtection;
         // Check if 'views' navigation is defined, and 'viewsource' is defined within; otherwise do not run
         if ( isset( $links['views'] ) && isset( $links['views']['viewsource'] ) && !isset( $links['views']['edit'] ) ) {
