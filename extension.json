@@ -28,7 +28,9 @@
 	},
 	
 	"HookHandlers": {
-		"Main": "MediaWiki\\Extension\\AnonEditFlow\\AnonEditFlowHooks"
+		"Main": {
+			"class": "MediaWiki\\Extension\\AnonEditFlow\\AnonEditFlowHooks"
+		}
 	},
 	"Hooks": {
 		"SkinTemplateNavigation::Universal": "Main",
