@@ -5,5 +5,6 @@
         ]
     },
 
-    "ark-edit-accountrequired": "Create an account to edit articles on the Official ARK Wiki."
+    "anoneditflow-desc": "Adds back Edit links to unregistered users' article navigation when anonymous editing is disabled.",
+    "accountrequiredtoedit": "An account is required to edit pages on this Wiki."
 }

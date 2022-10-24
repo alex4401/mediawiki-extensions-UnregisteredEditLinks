@@ -1,22 +1,24 @@
 <?php
-namespace Ark\AnonEditFlow;
+namespace MediaWiki\Extension\AnonEditFlow;
 
 use SkinTemplate;
 use SpecialPage;
 use MediaWiki\MediaWikiServices;
 use LoginHelper;
 
-class AnonEditFlowHooks {
-    const MSG_CREATE_ACCOUNT_TO_EDIT = 'ark-edit-accountrequired';
+class AnonEditFlowHooks implements
+    \MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
+    \MediaWiki\Hook\LoginFormValidErrorMessagesHook {
+    const MSG_CREATE_ACCOUNT_TO_EDIT = 'accountrequiredtoedit';
 
-    public static function onLoginFormValidErrorMessages( &$messages ) {
+    public function onLoginFormValidErrorMessages( array &$messages ) {
         $messages[] = self::MSG_CREATE_ACCOUNT_TO_EDIT;
     }
 
-    public static function onSkinTemplateNavigation( SkinTemplate $skin, array &$links ) {
+    public function onSkinTemplateNavigation__Universal( SkinTemplate $skin, array &$links ): void {
         global $wgNamespaceProtection;
         // Check if 'views' navigation is defined, and 'viewsource' is defined within; otherwise do not run
-        if ( array_key_exists( 'views', $links ) && array_key_exists( 'viewsource', $links['views'] ) ) {
+        if ( isset( $links['views'] ) && isset( $links['views']['viewsource'] ) && !isset( $links['views']['edit'] ) ) {
             // Require that the user is an anon
             if ( $skin->getAuthority()->getUser()->isAnon() ) {
                 $title = $skin->getRelevantTitle();

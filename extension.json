@@ -1,11 +1,12 @@
 {
-	"name": "ARK Wiki anonymous editing flow",
+	"name": "Unregistered Edit Links",
 	"version": "1.0.0",
 
 	"author": [
 		"alex4401"
 	],
 	"url": "https://gitlab.mglolenstine.xyz/alex4401/mediawiki-extension-anoneditflow",
+	"descriptionmsg": "anoneditflow-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 
@@ -17,18 +18,21 @@
 	},
 
 	"MessagesDirs": {
-		"AnonEditFlow.class": [
+		"AnonEditFlow": [
 			"i18n"
 		]
 	},
 
 	"AutoloadNamespaces": {
-		"Ark\\AnonEditFlow\\": "includes/"
+		"MediaWiki\\Extension\\AnonEditFlow\\": "includes/"
 	},
 	
+	"HookHandlers": {
+		"Main": "MediaWiki\\Extension\\AnonEditFlow\\AnonEditFlowHooks"
+	},
 	"Hooks": {
-		"SkinTemplateNavigation::Universal": "Ark\\AnonEditFlow\\AnonEditFlowHooks::onSkinTemplateNavigation",
-		"LoginFormValidErrorMessages": "Ark\\AnonEditFlow\\AnonEditFlowHooks::onLoginFormValidErrorMessages"
+		"SkinTemplateNavigation::Universal": "Main",
+		"LoginFormValidErrorMessages": "Main"
 	},
 
 	"manifest_version": 2
