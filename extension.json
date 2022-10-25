@@ -37,5 +37,12 @@
 		"LoginFormValidErrorMessages": "Main"
 	},
 
+	"config_prefix": "wgAEF",
+	"config": {
+		"AdvertiseCreationInContentNs": {
+			"value": true
+		}
+	},
+
 	"manifest_version": 2
 }

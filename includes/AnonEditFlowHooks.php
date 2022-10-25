@@ -16,12 +16,23 @@ class AnonEditFlowHooks implements
     }
 
     public function onSkinTemplateNavigation__Universal( $skin, &$links ): void {
-        global $wgNamespaceProtection;
+        global $wgNamespaceProtection, $wgContentNamespaces;
         // Check if 'views' navigation is defined, and 'viewsource' is defined within; otherwise do not run
-        if ( isset( $links['views'] ) && isset( $links['views']['viewsource'] ) && !isset( $links['views']['edit'] ) ) {
+        if ( isset( $links['views'] ) ) {
+            $title = $skin->getRelevantTitle();
+
+            $shouldModify = isset( $links['views']['viewsource'] ) && !isset( $links['views']['edit'] );
+            if ( !$shouldModify && $GLOBALS['wgAEFAdvertiseCreationInContentNs']
+                && in_array( $title->getNamespace(), $wgContentNamespaces ) && !$title->exists() ) {
+                $shouldModify = true;
+            }
+
+            if ( !$shouldModify ) {
+                return;
+            }
+
             // Require that the user is an anon
             if ( $skin->getAuthority()->getUser()->isAnon() ) {
-                $title = $skin->getRelevantTitle();
                 $nsIndex = $title->getNamespace();
                 // Check namespace restrictions
                 if ( isset( $wgNamespaceProtection[ $nsIndex ] )
@@ -35,23 +46,27 @@ class AnonEditFlowHooks implements
                 }
 
                 // Prepare the action link
-                $injection = [
-                    'edit' => [
-                        'class' => false,
-                        'text' => wfMessage( 'edit' )->setContext( $skin->getContext() )->text(),
-                        'href' => SpecialPage::getTitleFor( 'CreateAccount' )->getLocalURL( [
-                            'warning' => self::MSG_CREATE_ACCOUNT_TO_EDIT,
-                            'returnto' => $title->getPrefixedDBKey(),
-                            'returntoquery' => 'action=edit'
-                        ] ),
-                        'primary' => true
-                    ]
-                ];
+                $injection = self::getActionLink( $skin, $title );
                 // Inject the new link onto second position
                 $links['views'] = array_slice( $links['views'], 0, 1, true ) + $injection +
                     array_slice( $links['views'], 1, null, true );
             }
         }
+    }
+
+    private static function getActionLink( SkinTemplate $skin, Title $title ): array {
+        return [
+            'edit' => [
+                'class' => false,
+                'text' => wfMessage( 'edit' )->setContext( $skin->getContext() )->text(),
+                'href' => SpecialPage::getTitleFor( 'CreateAccount' )->getLocalURL( [
+                    'warning' => self::MSG_CREATE_ACCOUNT_TO_EDIT,
+                    'returnto' => $title->getPrefixedDBKey(),
+                    'returntoquery' => 'action=edit'
+                ] ),
+                'primary' => true
+            ]
+        ];
     }
 
     private static function doUsersProbablyHaveTheseRights( /*string|array*/ $rights ) {
