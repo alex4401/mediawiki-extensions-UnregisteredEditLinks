@@ -21,11 +21,7 @@ class AnonEditFlowHooks implements
         if ( isset( $links['views'] ) ) {
             $title = $skin->getRelevantTitle();
 
-            $shouldModify = isset( $links['views']['viewsource'] ) && !isset( $links['views']['edit'] );
-            if ( !$shouldModify && $GLOBALS['wgAEFAdvertiseCreationInContentNs']
-                && $title->isContentPage() && !$title->exists() ) {
-                $shouldModify = true;
-            }
+            $shouldModify = self::checkCriteria( $title, &$links );
 
             if ( !$shouldModify ) {
                 return;
@@ -52,6 +48,22 @@ class AnonEditFlowHooks implements
                     array_slice( $links['views'], 1, null, true );
             }
         }
+    }
+
+    private static function checkCriteria( Title $title, array &$links ): bool {
+        if ( isset( $links['views']['viewsource'] ) && !isset( $links['views']['edit'] ) ) {
+            return true;
+        }
+
+        $contentNs = $GLOBALS['wgAEFAdvertiseCreationInContentNs'];
+        $canExist = $GLOBALS['wgAEFAdvertiseCreationIfCanExist'];
+        if ( ( $contentNs || $canExist ) && !$title->exists()
+            && ( ( $canExist && $title->canExist() ) || ( $contentNs && $title->isContentPage() ) )
+        ) {
+            return true;
+        }
+
+        return false;
     }
 
     private static function getActionLink( SkinTemplate $skin, Title $title ): array {
