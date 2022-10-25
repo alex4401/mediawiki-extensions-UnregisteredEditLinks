@@ -5,6 +5,7 @@ use SkinTemplate;
 use SpecialPage;
 use MediaWiki\MediaWikiServices;
 use LoginHelper;
+use Title;
 
 class AnonEditFlowHooks implements
     \MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
