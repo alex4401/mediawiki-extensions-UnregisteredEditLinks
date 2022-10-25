@@ -21,7 +21,7 @@ class AnonEditFlowHooks implements
         if ( isset( $links['views'] ) ) {
             $title = $skin->getRelevantTitle();
 
-            $shouldModify = self::checkCriteria( $title, &$links );
+            $shouldModify = self::checkCriteria( $title, $links );
 
             if ( !$shouldModify ) {
                 return;
