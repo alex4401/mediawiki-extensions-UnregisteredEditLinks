@@ -16,14 +16,14 @@ class AnonEditFlowHooks implements
     }
 
     public function onSkinTemplateNavigation__Universal( $skin, &$links ): void {
-        global $wgNamespaceProtection, $wgContentNamespaces;
+        global $wgNamespaceProtection;
         // Check if 'views' navigation is defined, and 'viewsource' is defined within; otherwise do not run
         if ( isset( $links['views'] ) ) {
             $title = $skin->getRelevantTitle();
 
             $shouldModify = isset( $links['views']['viewsource'] ) && !isset( $links['views']['edit'] );
             if ( !$shouldModify && $GLOBALS['wgAEFAdvertiseCreationInContentNs']
-                && in_array( $title->getNamespace(), $wgContentNamespaces ) && !$title->exists() ) {
+                && $title->isContentPage() && !$title->exists() ) {
                 $shouldModify = true;
             }
 
