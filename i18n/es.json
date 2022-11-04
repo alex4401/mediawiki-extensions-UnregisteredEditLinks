@@ -1,4 +1,9 @@
 {
     "accountrequiredtoedit": "Debes tener una cuenta registrada para editar esta Wiki.<br/>Si ya tienes una cuenta, por favor [[Special:UserLogin|inicia sesión]] con ella.",
-    "anoneditflow-desc": "Añade enlaces de edición para la navegación de usuarios sin registrar (cuando esté desactivada la edición anónima)."
+    "anoneditflow-desc": "Añade enlaces de edición para la navegación de usuarios sin registrar (cuando esté desactivada la edición anónima).",
+    "@metadata": {
+        "authors": [
+            "Mirageionova"
+        ]
+    }
 }

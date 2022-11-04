@@ -1,4 +1,9 @@
 {
     "accountrequiredtoedit": "Un compte est requis pour éditer les pages de ce Wiki.<br/>Si vous en avez déjà un, [[Spécial:UserLogin|connectez vous]].",
-    "anoneditflow-desc": "Ajout de liens Éditer pour la navigation des utilisateurs non enregistrés quand l'édition anonyme est désactivée."
+    "anoneditflow-desc": "Ajout de liens Éditer pour la navigation des utilisateurs non enregistrés quand l'édition anonyme est désactivée.",
+    "@metadata": {
+        "authors": [
+            "Chatmaigre888"
+        ]
+    }
 }

@@ -1,4 +1,9 @@
 {
     "accountrequiredtoedit": "Musisz założyć konto by edytować strony tej encyklopedii.<br/>Jeśli masz już je założone, [[Special:UserLogin|zaloguj się]].",
-    "anoneditflow-desc": "Przywraca linki edycji do nawigacji artykułowej użytkowników niezalogowanych, gdy nie mają uprawnień edycji."
+    "anoneditflow-desc": "Przywraca linki edycji do nawigacji artykułowej użytkowników niezalogowanych, gdy nie mają uprawnień edycji.",
+    "@metadata": {
+        "authors": [
+            "alex4401"
+        ]
+    }
 }
