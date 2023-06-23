@@ -71,7 +71,7 @@ class Hooks implements
         return [
             'edit' => [
                 'class' => false,
-                'text' => wfMessage( $title->exists() ? 'edit' : 'create' )->setContext( $skin->getContext() )->text(),
+                'text' => wfMessage( $title->exists() ? 'unregistered-edit' : 'unregistered-create' )->setContext( $skin->getContext() )->text(),
                 'href' => SpecialPage::getTitleFor( 'CreateAccount' )->getLocalURL( [
                     'warning' => self::MSG_CREATE_ACCOUNT_TO_EDIT,
                     'returnto' => $title->getPrefixedDBKey(),

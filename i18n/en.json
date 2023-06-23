@@ -6,5 +6,7 @@
     },
 
     "unregisterededitlinks-desc": "Adds back Edit links to unregistered users' article navigation when anonymous editing is disabled.",
+    "unregistered-edit": "Sign up to edit",
+    "unregistered-create": "Sign up to create",
     "accountrequiredtoedit": "An account is required to edit pages on this Wiki.<br/>If you already have one, please [[Special:UserLogin|log in]]."
 }
