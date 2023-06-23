@@ -1,28 +1,47 @@
 <?php
 namespace MediaWiki\Extension\UnregisteredEditLinks;
 
+use Config;
+use MediaWiki\MainConfigNames;
 use SkinTemplate;
 use SpecialPage;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\RestrictionStore;
 use Title;
 
 class Hooks implements
     \MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
     \MediaWiki\Hook\LoginFormValidErrorMessagesHook
 {
-    const MSG_CREATE_ACCOUNT_TO_EDIT = 'accountrequiredtoedit';
+    public const MSG_CREATE_ACCOUNT_TO_EDIT = 'accountrequiredtoedit';
+
+    private Config $config;
+    private RestrictionStore $restrictionStore;
+    private bool $showCreateInContentNs;
+    private bool $showCreateIfCanExist;
+
+    public function __construct(
+        Config $config,
+        RestrictionStore $restrictionStore
+    ) {
+        $this->config = $config;
+        $this->restrictionStore = $restrictionStore;
+        $this->showCreateInContentNs = $config->get( 'AEFAdvertiseCreationInContentNs' );
+        $this->showCreateIfCanExist = $config->get( 'AEFAdvertiseCreationIfCanExist' );
+    }
 
     public function onLoginFormValidErrorMessages( array &$messages ) {
         $messages[] = self::MSG_CREATE_ACCOUNT_TO_EDIT;
     }
 
     public function onSkinTemplateNavigation__Universal( $skin, &$links ): void {
-        global $wgNamespaceProtection;
+        $nsProtections = $this->config->get( MainConfigNames::NamespaceProtection );
+    
         // Check if 'views' navigation is defined, and 'viewsource' is defined within; otherwise do not run
         if ( isset( $links['views'] ) ) {
             $title = $skin->getRelevantTitle();
 
-            $shouldModify = self::checkCriteria( $title, $links );
+            $shouldModify = $this->checkCriteria( $title, $links );
 
             if ( !$shouldModify ) {
                 return;
@@ -32,13 +51,12 @@ class Hooks implements
             if ( $skin->getAuthority()->getUser()->isAnon() ) {
                 $nsIndex = $title->getNamespace();
                 // Check namespace restrictions
-                if ( isset( $wgNamespaceProtection[ $nsIndex ] )
-                    && !self::doUsersProbablyHaveTheseRights( $wgNamespaceProtection[ $nsIndex ] ) ) {
+                if ( isset( $nsProtections[ $nsIndex ] )
+                    && !self::doUsersProbablyHaveTheseRights( $nsProtections[ $nsIndex ] ) ) {
                     return;
                 }
                 // Check page restrictions
-                $restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
-                if ( !self::doUsersProbablyHaveTheseRights( $restrictionStore->getRestrictions( $title, 'edit' ) ) ) {
+                if ( !self::doUsersProbablyHaveTheseRights( $this->restrictionStore->getRestrictions( $title, 'edit' ) ) ) {
                     return;
                 }
 
@@ -51,16 +69,14 @@ class Hooks implements
         }
     }
 
-    private static function checkCriteria( Title $title, array &$links ): bool {
+    private function checkCriteria( Title $title, array &$links ): bool {
         if ( isset( $links['views']['viewsource'] ) && !isset( $links['views']['edit'] ) ) {
             return true;
         }
 
-        $contentNs = $GLOBALS['wgAEFAdvertiseCreationInContentNs'];
-        $canExist = $GLOBALS['wgAEFAdvertiseCreationIfCanExist'];
-        if ( ( $contentNs || $canExist ) && !$title->exists()
-            && ( ( $canExist && $title->canExist() ) || ( $contentNs && $title->isContentPage() ) )
-        ) {
+        if ( ( $this->showCreateInContentNs || $this->showCreateIfCanExist ) && !$title->exists() && (
+            ( $this->showCreateIfCanExist && $title->canExist() )
+            || ( $this->showCreateInContentNs && $title->isContentPage() ) ) ) {
             return true;
         }
 
