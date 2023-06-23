@@ -1,4 +1,4 @@
-# AnonEditFlow extension
+# UnregisteredEditLinks extension
 
 This is free software licensed under the GNU General Public License. Please
 see http://www.gnu.org/copyleft/gpl.html for further details, including the
@@ -14,5 +14,3 @@ the group: Users").
 Altered behaviour checks for namespace edit restrictions and page protections, and if it's possible a freshly created user will
 satisfy them, the `Edit` link is restored leading to the account creation form. The form itself displays a message notifying the
 user why they landed there, and redirects back to the editor when successful.
-
-[Live demo](https://ark-wcmove-sandbox.mglolenstine.xyz/wiki/Leveling)

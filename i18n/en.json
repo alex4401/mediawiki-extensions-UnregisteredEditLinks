@@ -5,6 +5,6 @@
         ]
     },
 
-    "anoneditflow-desc": "Adds back Edit links to unregistered users' article navigation when anonymous editing is disabled.",
+    "unregisterededitlinks-desc": "Adds back Edit links to unregistered users' article navigation when anonymous editing is disabled.",
     "accountrequiredtoedit": "An account is required to edit pages on this Wiki.<br/>If you already have one, please [[Special:UserLogin|log in]]."
 }

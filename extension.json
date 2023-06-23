@@ -5,8 +5,8 @@
 	"author": [
 		"alex4401"
 	],
-	"url": "https://gitlab.mglolenstine.xyz/alex4401/mediawiki-extension-anoneditflow",
-	"descriptionmsg": "anoneditflow-desc",
+	"url": "https://github.com/alex4401/mediawiki-extensions-UnregisteredEditLinks",
+	"descriptionmsg": "unregisterededitlinks-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 
