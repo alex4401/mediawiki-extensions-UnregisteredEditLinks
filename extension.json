@@ -18,18 +18,18 @@
 	},
 
 	"MessagesDirs": {
-		"AnonEditFlow": [
+		"UnregisteredEditLinks": [
 			"i18n"
 		]
 	},
 
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\AnonEditFlow\\": "includes/"
+		"MediaWiki\\Extension\\UnregisteredEditLinks\\": "includes/"
 	},
 	
 	"HookHandlers": {
 		"Main": {
-			"class": "MediaWiki\\Extension\\AnonEditFlow\\AnonEditFlowHooks"
+			"class": "MediaWiki\\Extension\\UnregisteredEditLinks\\Hooks"
 		}
 	},
 	"Hooks": {

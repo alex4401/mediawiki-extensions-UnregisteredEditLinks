@@ -1,15 +1,15 @@
 <?php
-namespace MediaWiki\Extension\AnonEditFlow;
+namespace MediaWiki\Extension\UnregisteredEditLinks;
 
 use SkinTemplate;
 use SpecialPage;
 use MediaWiki\MediaWikiServices;
-use LoginHelper;
 use Title;
 
-class AnonEditFlowHooks implements
+class Hooks implements
     \MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
-    \MediaWiki\Hook\LoginFormValidErrorMessagesHook {
+    \MediaWiki\Hook\LoginFormValidErrorMessagesHook
+{
     const MSG_CREATE_ACCOUNT_TO_EDIT = 'accountrequiredtoedit';
 
     public function onLoginFormValidErrorMessages( array &$messages ) {
