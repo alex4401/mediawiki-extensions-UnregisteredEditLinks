@@ -4,5 +4,8 @@
             "magic"
         ]
     },
-    "accountrequiredtoedit": "Um Seiten in diesem Wiki zu bearbeiten, wird ein Benutzerkonto benötigt. <br/>Falls vorhanden, bitte [[Special:UserLogin|anmelden]]."
+    "accountrequiredtoedit": "Um Seiten in diesem Wiki zu bearbeiten, wird ein Benutzerkonto benötigt. <br/>Falls vorhanden, bitte [[Special:UserLogin|anmelden]].",
+    "unregistered-create": "Anmelden zum Erstellen",
+    "unregistered-edit": "Anmelden zum Bearbeiten",
+    "unregisterededitlinks-desc": "Fügt Bearbeitungslinks zur Artikelnavigation für nicht registrierte Benutzer hinzu, wenn die anonyme Bearbeitung deaktiviert ist."
 }
