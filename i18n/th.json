@@ -5,5 +5,7 @@
         "authors": [
             "Bellbox"
         ]
-    }
+    },
+    "unregistered-create": "โปรดสร้างบัญชีเพื่อดำเนินการสร้าง",
+    "unregistered-edit": "โปรดสร้างบัญชีเพื่อดำเนินการแก้ไข"
 }
