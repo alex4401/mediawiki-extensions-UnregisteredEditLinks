@@ -1,11 +1,11 @@
 {
-    "accountrequiredtoedit": "Debes tener una cuenta registrada para editar esta Wiki.<br/>Si ya tienes una cuenta, por favor [[Special:UserLogin|inicia sesión]] con ella.",
-    "unregisterededitlinks-desc": "Añade enlaces de edición para la navegación de usuarios sin registrar (cuando esté desactivada la edición anónima).",
     "@metadata": {
         "authors": [
             "Mirageionova"
         ]
     },
+    "accountrequiredtoedit": "Debes tener una cuenta registrada para editar esta Wiki.<br/>Si ya tienes una cuenta, por favor [[Special:UserLogin|inicia sesión]] con ella.",
     "unregistered-create": "Inicia sesión para crear páginas",
-    "unregistered-edit": "Inicia sesión para editar páginas"
+    "unregistered-edit": "Inicia sesión para editar páginas",
+    "unregisterededitlinks-desc": "Añade enlaces de edición para la navegación de usuarios sin registrar (cuando esté desactivada la edición anónima)."
 }

@@ -1,11 +1,11 @@
 {
-    "accountrequiredtoedit": "Un compte est requis pour éditer les pages de ce Wiki.<br/>Si vous en avez déjà un, [[Spécial:UserLogin|connectez vous]].",
-    "unregisterededitlinks-desc": "Ajout de liens Éditer pour la navigation des utilisateurs non enregistrés quand l'édition anonyme est désactivée.",
     "@metadata": {
         "authors": [
             "Chatmaigre888"
         ]
     },
+    "accountrequiredtoedit": "Un compte est requis pour éditer les pages de ce Wiki.<br/>Si vous en avez déjà un, [[Spécial:UserLogin|connectez vous]].",
     "unregistered-create": "Se connecter pour créer",
-    "unregistered-edit": "Se connecter pour éditer"
+    "unregistered-edit": "Se connecter pour éditer",
+    "unregisterededitlinks-desc": "Ajout de liens Éditer pour la navigation des utilisateurs non enregistrés quand l'édition anonyme est désactivée."
 }

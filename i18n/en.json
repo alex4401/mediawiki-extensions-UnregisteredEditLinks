@@ -4,8 +4,8 @@
             "alex4401"
         ]
     },
-    "unregisterededitlinks-desc": "Adds back Edit links to unregistered users' article navigation when anonymous editing is disabled.",
-    "unregistered-edit": "Sign up to edit",
+    "accountrequiredtoedit": "An account is required to edit pages on this wiki.<br/>If you already have one, please [[Special:UserLogin|log in]].",
     "unregistered-create": "Sign up to create",
-    "accountrequiredtoedit": "An account is required to edit pages on this wiki.<br/>If you already have one, please [[Special:UserLogin|log in]]."
+    "unregistered-edit": "Sign up to edit",
+    "unregisterededitlinks-desc": "Adds back Edit links to unregistered users' article navigation when anonymous editing is disabled."
 }
